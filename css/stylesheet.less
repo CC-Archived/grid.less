@@ -1,0 +1,89 @@
+@import "grid.less";
+
+@import "reset.css";
+
+#typekit {
+	.droid-sans() {
+		font-family: "droid-sans-1","droid-sans-2";
+	}
+	.droid-serif() {
+		font-family: "droid-serif-1","droid-serif-2";
+	}
+}
+
+#css3 {
+	.border-radius(@radius: 0px) {
+		-webkit-border-radius: @radius;
+		-moz-border-radius: @radius;
+		border-radius: @radius;
+	}
+	
+	.opacity(@opacity:1.0) {
+	    -moz-opacity: @opacity;
+	    -khtml-opacity: @opacity;
+	    -webkit-opacity: @opacity;
+	    opacity: @opacity;
+	}
+	
+	.rotate(@degrees: 0deg) {
+		-webkit-transform: rotate(@degrees);
+		-moz-transform: rotate(@degrees);
+		-o-transform: rotate(@degrees);
+		transform: rotate(@degrees);
+	}
+	
+	.user-select(@option) {
+		-moz-user-select: @option;
+		-webkit-user-select: @option;
+		user-select: @option;
+	}
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	background: #4d98fd url('../image/grid-pattern.png') repeat;
+	background: url('../image/grid-pattern.png') repeat,
+	            -webkit-gradient(linear, left top, left bottom, from(#6fb6ff), to(#4d98fd));
+	
+	header {
+		width: 100%;
+		
+		.content {
+			#grid > .container;
+			#grid > .container .clear;
+			padding-top: 40px;
+			padding-bottom: 40px;
+
+			#logo {
+				#grid > .container .columns(12);
+				text-align: center;			
+			}
+			
+			#tagline {
+				#grid > .container .columns(12);
+				
+				h1 {
+					#typekit > .droid-serif;
+					color: #fff;
+					font-size: 36px;
+					font-weight: normal;
+					text-align: center;
+					text-shadow: #333 0px 1px 1px;
+				}
+			}
+		}
+	}
+	
+	section {
+	}
+	
+	footer {
+		#typekit > .droid-sans;
+		color: #fff;
+		text-align: center;
+		text-shadow: #333 0px 1px 1px;
+	}
+}

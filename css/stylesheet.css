@@ -1,0 +1,72 @@
+@import "reset.css";
+/* grid.less 2.0 */
+html, body {
+  height: 100%;
+}
+body {
+  background: #4d98fd url('../image/grid-pattern.png') repeat;
+  background: url('../image/grid-pattern.png') repeat, -webkit-gradient(linear, left top, left bottom, from(#6fb6ff), to(#4d98fd));
+}
+body header {
+  width: 100%;
+}
+body header .content {
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+body header .content:after {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+  visibility: hidden;
+  zoom: 1;
+  content: '\0020';
+}
+body header .content:after {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+  visibility: hidden;
+  zoom: 1;
+  content: '\0020';
+}
+body header .content #logo {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 940px;
+  text-align: center;
+}
+body header .content #tagline {
+  display: inline;
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 940px;
+}
+body header .content #tagline h1 {
+  font-family: "droid-serif-1", "droid-serif-2";
+  color: #fff;
+  font-size: 36px;
+  font-weight: normal;
+  text-align: center;
+  text-shadow: #333 0px 1px 1px;
+}
+body footer {
+  font-family: "droid-sans-1", "droid-sans-2";
+  color: #fff;
+  text-align: center;
+  text-shadow: #333 0px 1px 1px;
+}
