@@ -21,90 +21,98 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////
-// Grid.less
+// grid.less
 // 	
 // A grid system implemented as less.js (http://lesscss.org/) mixins to promote 
 // the definition of semantic, rather than grid-system specific, CSS classes.
-// 	
+// 
 // Based on the 960 Grid System (http://960.gs) by Nathan Smith (http://sonspring.com/).
-// Based on similar implementation by Mark McConachie (http://www.markmcconachie.com/).
+//
+// Acknowledgements:
+//
+//   As grid.less has evolved, it has drawn heavily from similar implementations by:
+//
+//    * Mark McConachie (http://www.markmcconachie.com/)
+//    * Greg Thornton (http://xdissent.com/) 
 // 
 // @author John Yanarella (http://www.codecatalyst.com/)
-// @version 1.0
+// @version 2.0
 ////////////////////////////////////////////////////////////////////////////////
 
-/* Grid.less 1.0 */
+/* grid.less 2.0 */
 
 #grid {
 	
-	// ========================================
-	// Configuration
-	// ========================================
+	// Designate this element as a grid container, with the specified @column-count, @column-width and @gutter-width.
 	
-	@column-count: 12;
-	@column-width: 60px;
-	@gutter-width: 20px;
-	
-	// ========================================
-	// Precalculated constants
-	// ========================================
-	
-	@page-width: (@column-count * @column-width) + (@column-count * @gutter-width);
-	
-	@margin-left: @gutter-width / 2;
-	@margin-right: @gutter-width / 2;
-	
-	// ========================================
-	// Mixins
-	// ========================================
-	
-	.body() {
-		min-width: @page-width;
-	}
-	
-	.container() {
+	.container(@column-count: 12, @container-width: 960px, @margin-width: 10px) {
+		@total-column-width: @container-width / @column-count;
+		@gutter-width: @margin-width * 2;
+		
 		margin-left: auto;
 		margin-right: auto;
-		width: @page-width;
-	}
-	
-	.grid(@grid-index: 1)
-	{
-		display: inline;
-		float: left;
-		width: (@page-width / @column-count) * @grid-index - @gutter-width;
-		margin-left: @margin-left;
-		margin-right: @margin-right;
-	}
-	
-	.prefix(@prefix-count: 1) {
-		padding-left: (@page-width / @column-count) * @prefix-count;
-	}
-	
-	.suffix(@suffix-count: 1) {
-		padding-right: (@page-width / @column-count) * @suffix-count;
-	}
-	
-	.push(@push-count: 1) {
-		position: relative;
-		left: (@page-width / @column-count) * @push-count;
-	}
-	
-	.pull(@pull-count: 1) {
-		.push(0 - @pull-count);
-	}
-	
-	.alpha() {
-		margin-left: 0;
-	}
-	
-	.omega() {
-		margin-right: 0;
-	}
-	
-	.clearfix() {
-		&:after {
-			content: '\0020';
+		width: @container-width;
+		.clear();
+		
+		// Designate this element as a grid element, @column-count columns wide.
+		
+		.columns(@column-count: 1) {
+			display: inline;
+			float: left;
+			margin-left: @margin-width;
+			margin-right: @margin-width;
+			width: @total-column-width * @column-count - @gutter-width;
+		}
+		
+		// Prepend @prefix-count empty columns before this grid element.
+		
+		.prefix(@prefix-count: 1) {
+			padding-left: @total-column-width * @prefix-count;
+		}
+		
+		// Append @suffix-count empty columns after this grid element.
+		
+		.suffix(@suffix-count: 1) {
+			padding-right: @total-column-width * @suffix-count;
+		}
+
+		// Push this grid element @push-count columns to the right.
+		
+		.push(@push-count: 1) {
+			position: relative;
+			left: @total-column-width * @push-count;
+		}
+		
+		// Pull this grid element @pull-count columns to the left.
+		
+		.pull(@pull-count: 1) {
+			.push(0 - @pull-count);
+		}
+		
+		// Mark as the first nested grid element - remove the left margin.
+		
+		.alpha() {
+			margin-left: 0;
+		}
+		
+		// Mark as the last nested grid element - remove the right margin.
+		
+		.omega() {
+			margin-right: 0;
+		}
+		
+		// Clear all floats following this element.
+		
+		.clear() {
+			&:after {
+				.clearfix();
+				content: '\0020';
+			}
+		}
+		
+		// Clear all floats.
+		
+		.clearfix() {
 			clear: both;
 			display: block;
 			overflow: hidden;
