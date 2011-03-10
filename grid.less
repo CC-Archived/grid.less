@@ -30,10 +30,10 @@
 //
 // Acknowledgements:
 //
-//   As grid.less has evolved, it has drawn heavily from similar implementations by:
+// As grid.less has evolved, it has drawn heavily from similar implementations by:
 //
-//    * Mark McConachie (http://www.markmcconachie.com/)
-//    * Greg Thornton (http://xdissent.com/) 
+//  * Mark McConachie (http://www.markmcconachie.com/)
+//  * Greg Thornton (http://xdissent.com/) 
 // 
 // @author John Yanarella (http://www.codecatalyst.com/)
 // @version 2.0
@@ -43,10 +43,10 @@
 
 #grid {
 	
-	// Designate this element as a grid container, with the specified @column-count, @column-width and @gutter-width.
+	// Designate this element as a grid container, with the specified @container-column-count, @container-width and @margin-width.
 	
-	.container(@column-count: 12, @container-width: 960px, @margin-width: 10px) {
-		@total-column-width: @container-width / @column-count;
+	.container(@container-column-count: 12, @container-width: 960px, @margin-width: 10px) {
+		@total-column-width: @container-width / @container-column-count;
 		@gutter-width: @margin-width * 2;
 		
 		margin-left: auto;
